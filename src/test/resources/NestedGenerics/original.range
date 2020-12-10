@@ -21,7 +21,7 @@ classdef 97 189 Test
     # End METHOD
     methoddef 241 20 apply (LTest;)Ljava/util/Set;
     # Start METHOD apply(LTest;)Ljava/util/Set;
-      method 263 3 add java/util/Set add (Ljava/lang/Object;)Z
+      method 263 3 add java/util/Collection add (Ljava/lang/Object;)Z
     # End METHOD
   # End METHOD
 # End CLASS

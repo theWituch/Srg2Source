@@ -11,7 +11,7 @@ classdef 188 144 SimpleImplements
   class 290 16 SimpleImplements false SimpleImplements
   methoddef 311 19 pre$close ()V
   # Start METHOD pre$close()V
-    method 320 5 close java/io/Closeable close ()V
+    method 320 5 close java/lang/AutoCloseable close ()V
   # End METHOD
 # End CLASS
 end
