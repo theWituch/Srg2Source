@@ -164,6 +164,7 @@ public class RangeApplierBuilder {
 
         ret.keepImports(keepImports);
         ret.printMissing(missing);
+        ret.overrideOutput(outputOverride);
 
         return ret;
     }
