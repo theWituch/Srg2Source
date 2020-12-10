@@ -326,7 +326,7 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
         }
 
         // Lastly, update imports - this == separate from symbol range manipulation above
-        String outString = updateImports(outData, importsToAdd);
+        String outString = updateImports(newTopLevelClassFullName, outData, importsToAdd);
 
         // rename?
         fileName = fileName.replace('\\', '/');
@@ -349,15 +349,9 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
     private boolean trackImport(Set<String> imports, String topLevel, String self, String reference) {
         if (reference.startsWith(topLevel)) return true; //This is a inner class, nested unknown amounts deep.... Just assume it's qualified correctly in code.
 
-        int idx = topLevel.lastIndexOf('/');
-        String tpkg = idx == -1 ? "" : topLevel.substring(0, idx);
-        idx = reference.lastIndexOf('/');
-        String rpkg = idx == -1 ? "" : reference.substring(0, idx);
-
-        if (tpkg.equals(rpkg)) return true; // We are in the same package, no import needed
-
         String imp = reference.replace('/', '.').replace('$', '.');
-        String cls = imp.substring(imp.lastIndexOf('.'));
+        int idx = imp.lastIndexOf('.');
+        String cls = idx == -1 ? imp : imp.substring(idx);
 
         List<String> conflicts = imports.stream().filter(e -> !e.equals(imp) && e.endsWith(cls)).collect(Collectors.toList());
         if (!conflicts.isEmpty()) {
@@ -378,7 +372,7 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
      * import\w+[static]\w+(ClassName);
      * We can not support comments before the import.. anyone wanna try it?
      */
-    private String updateImports(StringBuilder data, Set<String> newImports) {
+    private String updateImports(String fileName, StringBuilder data, Set<String> newImports) {
         int lastIndex = 0;
         int nextIndex = getNextIndex(data.indexOf("\n"), data.length(), lastIndex);
 
@@ -465,7 +459,7 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
                     nextIndex = nextIndex - (old.length() - newClass.length());
                 }
             } else if (sawImports && !addedNewImports) {
-                filterImports(newImports);
+                filterImports(fileName, newImports);
 
                 if (newImports.size() > 0) {
                     // Add our new imports right after the last import
@@ -495,7 +489,7 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
 
         // got through the whole file without seeing or adding any imports???
         if (!addedNewImports) {
-            filterImports(newImports);
+            filterImports(fileName, newImports);
 
             if (newImports.size() > 0) {
                 //If we saw the package line, add to it after that.
@@ -523,12 +517,25 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
         return newLine;
     }
 
-    private void filterImports(Set<String> newImports) {
+    private void filterImports(String fileName, Set<String> newImports) {
+        log("Filtering from " + newImports.size() + " imports");
+        
         Iterator<String> itr  = newImports.iterator();
         while (itr.hasNext()) {
-            if (itr.next().startsWith("java.lang.")) //java.lang classes can be referenced without imports
-                itr.remove();                        //We remove them here to allow for them to exist in src
-                                                     //But we will never ADD them
+            String imp = itr.next();
+            if (imp.startsWith("java.lang.")) //java.lang classes can be referenced without imports
+                itr.remove();                 //We remove them here to allow for them to exist in src
+                                              //But we will never ADD them
+
+            int idx = fileName.lastIndexOf('/');
+            String tpkg = idx == -1 ? "" : fileName.substring(0, idx).replaceAll("/",".");
+            idx = imp.lastIndexOf('.');
+            String rpkg = idx == -1 ? "" : imp.substring(0, idx);
+
+            if (tpkg.equals(rpkg)) { // We are in the same package, no import needed
+                itr.remove();
+                log("        " + imp);
+            }
         }
 
         if (newImports.size() > 0) {
