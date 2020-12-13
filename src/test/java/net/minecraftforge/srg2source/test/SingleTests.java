@@ -39,4 +39,5 @@ public class SingleTests extends SimpleTestBase {
     //@Test public void testCache()          { testClass("GenericClasses"); }
     @Test public void testWhiteSpace()     { testClass("Whitespace"    ); }
     @Test public void testStaticImports()  { testClass("StaticImports" ); }
+    @Test public void testOverriding()     { testClass("Overriding"    ); }
 }

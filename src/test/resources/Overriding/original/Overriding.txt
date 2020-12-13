@@ -1,0 +1,53 @@
+public class Overriding extends Abstract {
+    @Override
+    public void InterfaceMethod() {
+    }
+
+    @Override
+    public void CollidingMethod() {
+    }
+
+    @Override
+    public void ElderInterfaceMethod() {
+    }
+}
+
+abstract class Abstract extends Parent implements InterfaceChild, Interface {
+    /** Abstract class method */
+    public void AbstractMethod() {
+    }
+}
+
+class Parent extends Elder implements ElderInterface {
+    /** Parent class method same as in Interface interface */
+    public void CollidingMethod() {
+    }
+
+    @Override
+    public void ElderInterfaceMethod() {
+    }
+}
+
+class Elder {
+    /** Elder class method */
+    public void EldereMethod() {
+    }
+}
+
+interface Interface {
+    /** Interface interface method */
+    void InterfaceMethod();
+
+    /** Interface interface method */
+    void CollidingMethod();
+}
+
+interface ElderInterface {
+    /** ElderInterface interface method */
+    void ElderInterfaceMethod();
+}
+
+interface InterfaceChild {
+    /** InterfaceChild interface method */
+    void InterfaceMethod();
+}

@@ -1,0 +1,84 @@
+start 1 Overriding.java bf2b6a40bdc5829c46472829a2a94763
+classdef 0 219 Overriding
+# Start CLASS Overriding
+  class 13 10 Overriding false Overriding
+  class 32 8 Abstract false Abstract
+  methoddef 47 51 InterfaceMethod ()V
+  # Start METHOD InterfaceMethod()V
+    class 48 8 Override false java/lang/Override
+    method 73 15 InterfaceMethod InterfaceChild InterfaceMethod ()V
+  # End METHOD
+  methoddef 104 51 CollidingMethod ()V
+  # Start METHOD CollidingMethod()V
+    class 105 8 Override false java/lang/Override
+    method 130 15 CollidingMethod Parent CollidingMethod ()V
+  # End METHOD
+  methoddef 161 56 ElderInterfaceMethod ()V
+  # Start METHOD ElderInterfaceMethod()V
+    class 162 8 Override false java/lang/Override
+    method 187 20 ElderInterfaceMethod ElderInterface ElderInterfaceMethod ()V
+  # End METHOD
+# End CLASS
+classdef 221 153 Abstract
+# Start CLASS Abstract
+  class 236 8 Abstract false Abstract
+  class 253 6 Parent false Parent
+  class 271 14 InterfaceChild false InterfaceChild
+  class 287 9 Interface false Interface
+  methoddef 303 69 AbstractMethod ()V
+  # Start METHOD AbstractMethod()V
+    method 348 14 AbstractMethod Abstract AbstractMethod ()V
+  # End METHOD
+# End CLASS
+classdef 376 222 Parent
+# Start CLASS Parent
+  class 382 6 Parent false Parent
+  class 397 5 Elder false Elder
+  class 414 14 ElderInterface false ElderInterface
+  methoddef 435 99 CollidingMethod ()V
+  # Start METHOD CollidingMethod()V
+    method 509 15 CollidingMethod Parent CollidingMethod ()V
+  # End METHOD
+  methoddef 540 56 ElderInterfaceMethod ()V
+  # Start METHOD ElderInterfaceMethod()V
+    class 541 8 Override false java/lang/Override
+    method 566 20 ElderInterfaceMethod ElderInterface ElderInterfaceMethod ()V
+  # End METHOD
+# End CLASS
+classdef 600 84 Elder
+# Start CLASS Elder
+  class 606 5 Elder false Elder
+  methoddef 618 64 EldereMethod ()V
+  # Start METHOD EldereMethod()V
+    method 660 12 EldereMethod Elder EldereMethod ()V
+  # End METHOD
+# End CLASS
+interfacedef 686 156 Interface
+# Start INTERFACE Interface
+  class 696 9 Interface false Interface
+  methoddef 712 61 InterfaceMethod ()V
+  # Start METHOD InterfaceMethod()V
+    method 755 15 InterfaceMethod Interface InterfaceMethod ()V
+  # End METHOD
+  methoddef 779 61 CollidingMethod ()V
+  # Start METHOD CollidingMethod()V
+    method 822 15 CollidingMethod Interface CollidingMethod ()V
+  # End METHOD
+# End INTERFACE
+interfacedef 844 104 ElderInterface
+# Start INTERFACE ElderInterface
+  class 854 14 ElderInterface false ElderInterface
+  methoddef 875 71 ElderInterfaceMethod ()V
+  # Start METHOD ElderInterfaceMethod()V
+    method 923 20 ElderInterfaceMethod ElderInterface ElderInterfaceMethod ()V
+  # End METHOD
+# End INTERFACE
+interfacedef 950 99 InterfaceChild
+# Start INTERFACE InterfaceChild
+  class 960 14 InterfaceChild false InterfaceChild
+  methoddef 981 66 InterfaceMethod ()V
+  # Start METHOD InterfaceMethod()V
+    method 1029 15 InterfaceMethod InterfaceChild InterfaceMethod ()V
+  # End METHOD
+# End INTERFACE
+end
