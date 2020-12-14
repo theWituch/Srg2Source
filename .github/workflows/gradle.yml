@@ -34,3 +34,8 @@ jobs:
         restore-keys: ${{ runner.os }}-gradle
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Runnable-JAR
+        path:  build/libs/**-fatjar.jar
