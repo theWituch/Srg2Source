@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle
+name: Gradle build
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: windows-latest # fixes directory separator problems
 
     steps:
     - uses: actions/checkout@v2
@@ -37,5 +37,5 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Runnable-JAR
+        name: Srg2Source
         path:  build/libs/**-fatjar.jar
