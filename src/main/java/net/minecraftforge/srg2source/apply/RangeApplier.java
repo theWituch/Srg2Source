@@ -375,6 +375,7 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
     private String updateImports(String fileName, StringBuilder data, Set<String> newImports) {
         int lastIndex = 0;
         int nextIndex = getNextIndex(data.indexOf("\n"), data.length(), lastIndex);
+        String lineSeparator = data.charAt(nextIndex - 1) == '\r' ? "\r\n" : "\n"; // use line separator like in file
 
         boolean addedNewImports = false;
         boolean sawImports = false;
@@ -466,10 +467,10 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
                     CharSequence sub = data.subSequence(lastIndex, data.length()); // grab the rest of the string.
                     data.setLength(lastIndex); // cut off the build there
 
-                    newImports.stream().sorted().forEach(imp -> data.append("import ").append(imp).append(";\n"));
+                    newImports.stream().sorted().forEach(imp -> data.append("import ").append(imp).append(";" + lineSeparator));
 
                     if (newImports.size() > 0)
-                        data.append('\n');
+                        data.append(lineSeparator);
 
                     int change = data.length() - lastIndex; // get changed size
                     lastIndex = data.length(); // reset the end to the actual end..
@@ -499,10 +500,10 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
                 CharSequence sub = data.subSequence(index, data.length()); // grab the rest of the string.
                 data.setLength(index); // cut off the build there
 
-                newImports.stream().sorted().forEach(imp -> data.append("import ").append(imp).append(";\n"));
+                newImports.stream().sorted().forEach(imp -> data.append("import ").append(imp).append(";" + lineSeparator));
 
                 if (newImports.size() > 0)
-                    data.append('\n');
+                    data.append(lineSeparator);
 
                 data.append(sub); // add on the rest if the string again
             }
