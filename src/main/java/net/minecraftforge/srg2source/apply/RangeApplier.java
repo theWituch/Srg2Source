@@ -353,6 +353,12 @@ public class RangeApplier extends ConfLogger<RangeApplier> {
         int idx = imp.lastIndexOf('.');
         String cls = idx == -1 ? imp : imp.substring(idx);
 
+        // Detect import collision with new filename
+        if(self.replace('/', '.').endsWith(cls)) {
+            log("Cannot import [" + imp + "] because of class name conflict with filename [" + self + ".java]");
+            return false;
+        }
+
         List<String> conflicts = imports.stream().filter(e -> !e.equals(imp) && e.endsWith(cls)).collect(Collectors.toList());
         if (!conflicts.isEmpty()) {
             log("Cannot import [" + imp + "] because of class name conflict with " + conflicts);

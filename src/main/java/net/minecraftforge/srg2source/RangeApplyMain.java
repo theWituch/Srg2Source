@@ -97,10 +97,13 @@ public class RangeApplyMain {
 
             if (options.has(missingArg))
             {
-        	Path missing = options.valueOf(missingArg);
-        	System.out.println("Missing: " + missing);
+            Path missing = options.valueOf(missingArg);
+            System.out.println("Missing:   " + missing);
                 builder.missing(missing);
             }
+
+            // Print empty line after build informations
+            System.out.println("");
 
             if (keepImports)
                 builder.keepImports();
