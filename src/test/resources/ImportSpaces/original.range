@@ -9,10 +9,12 @@ classdef 257 151 ImportSpaces
     parameter 320 4 args ImportSpaces main ([Ljava/lang/String;)V 0
     class 332 4 List false java/util/List
     class 337 4 Date false java/util/Date
+    local_variable 343 3 tmp ImportSpaces main ([Ljava/lang/String;)V 1 Ljava/util/List;
     class 349 11 Collections false java/util/Collections
     method 361 9 emptyList java/util/Collections emptyList ()Ljava/util/List;
     class 378 4 List false java/util/List
     class 383 4 File false java/io/File
+    local_variable 389 5 files ImportSpaces main ([Ljava/lang/String;)V 2 Ljava/util/List;
   # End METHOD
 # End CLASS
 end

@@ -8,12 +8,16 @@ classdef 184 199 StaticImports
     class 239 6 String false java/lang/String
     parameter 248 4 args StaticImports main ([Ljava/lang/String;)V 0
     class 260 6 Double false java/lang/Double
+    local_variable 267 4 sqrt StaticImports main ([Ljava/lang/String;)V 1 Ljava/lang/Double;
     method 274 4 sqrt java/lang/Math sqrt (D)D
     class 287 6 Double false java/lang/Double
+    local_variable 294 3 pow StaticImports main ([Ljava/lang/String;)V 2 Ljava/lang/Double;
     method 300 3 pow java/lang/Math pow (DD)D
     class 314 7 Integer false java/lang/Integer
+    local_variable 322 11 integerSize StaticImports main ([Ljava/lang/String;)V 3 Ljava/lang/Integer;
     field 336 4 SIZE java/lang/Integer
     class 346 7 Integer false java/lang/Integer
+    local_variable 354 10 maxInteger StaticImports main ([Ljava/lang/String;)V 4 Ljava/lang/Integer;
     field 367 9 MAX_VALUE java/lang/Integer
   # End METHOD
 # End CLASS

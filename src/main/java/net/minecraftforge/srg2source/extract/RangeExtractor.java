@@ -29,11 +29,9 @@ import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -53,7 +51,6 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.FileASTRequestor;
 
-@SuppressWarnings("unchecked")
 public class RangeExtractor extends ConfLogger<RangeExtractor> {
     private static RangeExtractor INSTANCE = null;
 
@@ -128,9 +125,10 @@ public class RangeExtractor extends ConfLogger<RangeExtractor> {
     public boolean run() {
         log("Symbol range map extraction starting");
 
-        List<String> tmp = input.gatherAll(".java");
-        Collections.sort(tmp);
-        String[] files = tmp.toArray(new String[tmp.size()]);
+        String[] files = input.gatherAll(".java").stream()
+                .map(f -> f.replaceAll("\\\\", "/")) // Normalize directory separators.
+                .sorted()
+                .toArray(String[]::new);
         log("Processing " + files.length + " files");
 
         if (files.length == 0) {

@@ -11,18 +11,17 @@ classdef 97 189 Test
     class 165 4 Test false Test
     class 171 3 Set false java/util/Set
     class 175 6 String false java/lang/String
+    local_variable 184 3 map Test main ([Ljava/lang/String;)V 1 Ljava/util/Map;
     class 194 7 HashMap false java/util/HashMap
+    local_variable 209 3 map Test main ([Ljava/lang/String;)V 1 Ljava/util/Map;
     method 213 15 computeIfAbsent java/util/Map computeIfAbsent (Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
     class 233 4 Test false Test
     parameter 241 1 k Test lambda$0 (LTest;)Ljava/util/Set; 0
-    methoddef 241 20 lambda[apply] (LTest;)Ljava/util/Set;
-    # Start METHOD lambda[apply](LTest;)Ljava/util/Set;
+    methoddef 241 20 lambda$0 (LTest;)Ljava/util/Set;
+    # Start METHOD lambda$0(LTest;)Ljava/util/Set;
       class 250 7 HashSet false java/util/HashSet
     # End METHOD
-    methoddef 241 20 apply (LTest;)Ljava/util/Set;
-    # Start METHOD apply(LTest;)Ljava/util/Set;
-      method 263 3 add java/util/Collection add (Ljava/lang/Object;)Z
-    # End METHOD
+    method 263 3 add java/util/Collection add (Ljava/lang/Object;)Z
   # End METHOD
 # End CLASS
 end
